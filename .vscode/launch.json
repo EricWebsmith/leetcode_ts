@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run Mocha",
+            "type": "node",
+            "program": "${workspaceRoot}/node_modules/.bin/mocha",
+            "args": ["-r","ts-node/register","${file}"],
+            "cwd": "${workspaceRoot}",
+            "outFiles": []
+        }
+    ]
+}
