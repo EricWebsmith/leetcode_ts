@@ -21,6 +21,5 @@ describe('1119. Remove Vowels from a String', () => {
 });
 
 /*
-Runtime: 63 ms, faster than 92.31% of TypeScript online submissions for Remove Vowels from a String.
-Memory Usage: 43.5 MB, less than 30.77% of TypeScript online submissions for Remove Vowels from a String.
+
 */
