@@ -92,16 +92,28 @@ typescript = [d for d in code_definitions if d['value'] == 'typescript'][0]
 
 
 def get_code_snippet(typescript_code):
-    varAt = typescript_code.find('var ')
-    equalAt = typescript_code.find(' = ')
-    function_name = typescript_code[varAt+4:equalAt]
-    if question_type == 'Common':
-        typescript_code = typescript_code.replace(' = function', '')
-        typescript_code = typescript_code.replace('var', 'function')
-    return function_name, typescript_code
+    print(typescript_code)
+    print(len(typescript_code))
+    func_at = typescript_code.find('function ')
+    open_at = typescript_code.find('(')
+    close_at = typescript_code.find(')')
+    open_brace_at = typescript_code.find('{')
+    function_name = typescript_code[func_at+8:open_at]
+    typed_params = typescript_code[open_at+1:close_at].strip()
+    params = typed_params.split(',')
+    untyped_params = ''
+    for i in range(0, len(params)):
+        name_type = params[i].split(':')
+        untyped_params = name_type[0] + ', '
+    untyped_params = untyped_params.strip().strip(',')
+    print(close_at+1, open_brace_at)
+    print(typescript_code[close_at+1: open_brace_at])
+    return_type = typescript_code[close_at+1: open_brace_at].strip().strip(':')
+    return function_name, typed_params, untyped_params, return_type, typescript_code
 
 
-function_name, typescript_code = get_code_snippet(typescript['defaultCode'])
+function_name, typed_params, untyped_params, return_type, typescript_code = get_code_snippet(
+    typescript['defaultCode'])
 
 html = etree.HTML(question.content)
 
@@ -147,9 +159,8 @@ test_case_string = get_test_case_code(html)
 
 test_function_code = ''
 if question_type == 'Common':
-    test_function_code = f"""function test(...args) {{
-    const expected = args.pop();
-    const actual = {function_name} (...args);
+    test_function_code = f"""function test({typed_params}, expected: {return_type}) {{
+    const actual = {function_name} ({untyped_params});
     if (actual !== expected) {{
         console.log(actual, expected);
     }}
