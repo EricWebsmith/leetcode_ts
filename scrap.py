@@ -104,7 +104,7 @@ def get_code_snippet(typescript_code):
     untyped_params = ''
     for i in range(0, len(params)):
         name_type = params[i].split(':')
-        untyped_params = name_type[0] + ', '
+        untyped_params += name_type[0] + ', '
     untyped_params = untyped_params.strip().strip(',')
     print(close_at+1, open_brace_at)
     print(typescript_code[close_at+1: open_brace_at])
