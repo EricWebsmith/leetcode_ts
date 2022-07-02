@@ -26,11 +26,7 @@ class TopVotedCandidate {
     constructor(persons: number[], times: number[]) {
         this.persons = persons;
         this.times = times;
-        //this.wins = new Object();
-        let zeros = 0;
-        let ones = 0;
         const map_ = new Map<number, number>();
-        let maxVote = 0;
         let previousWinner = 0;
         for (let person of persons) {
             const previous = map_.get(person)??0;
