@@ -17,17 +17,22 @@
 # python scrap.py "sum-of-mutated-array-closest-to-target"
 # ```
 
-
+import json
+import os
 import sys
+
 import leetcode
 import leetcode.auth
+from dotenv import dotenv_values
 from lxml import etree
-import json
+
 # you should create config.py yourself.
 # it contains only the following two variables.
 # open the following url from chrome to check the following two variable
 # chrome://settings/cookies/detail?site=leetcode.com
-from config import leetcode_session, csrf_token
+env = dotenv_values()
+leetcode_session = env['LEETCODE_SESSION']
+csrf_token = env['CSRF_TOKEN']
 
 title_slug = sys.argv[1]
 title_slug = title_slug.replace('https://leetcode.com/problems/', '')
@@ -206,6 +211,9 @@ describe('{question_id}. {question_title}', () => {{
 }});
 
 """
+
+if not os.path.exists('test'):
+    os.mkdir('test')
 
 with open(f'test/{question_id}. {question_title}.ts', mode='w') as f:
     f.write(code)
