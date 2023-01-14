@@ -7,6 +7,10 @@ export class TreeNode {
         this.left = left === undefined ? null : left;
         this.right = right === undefined ? null : right;
     }
+
+    toString() {
+        return this.val;
+    }
 }
 
 export function treeNode2Array(root: TreeNode): (number | null)[] {

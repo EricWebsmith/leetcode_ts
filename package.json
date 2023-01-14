@@ -1,26 +1,36 @@
 {
   "name": "leetcode_ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.ts",
   "scripts": {
     "test": "mocha --require ts-node/register --watch-extensions ts 'test/**/*.ts'",
     "build": "tsc",
-    "archive": "mv test/* archive/"
+    "archive": "mv test/* archive/",
+    "lint": "eslint ./test --ext .ts"
   },
   "author": "Eric Zhou",
   "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
     "chai": "^4.3.6",
+    "eslint": "^8.31.0",
+    "eslint-config-standard-with-typescript": "^27.0.1",
+    "eslint-plugin-import": "^2.27.4",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
     "mocha": "^10.0.0",
     "ts-node": "^10.8.1",
-    "typescript": "^4.7.4"
+    "typescript": "^4.9.4"
   },
   "dependencies": {
     "@datastructures-js/queue": "^4.2.1",
     "@types/lodash": "^4.14.182",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "npm-check-updates": "^16.6.2",
+    "update": "^0.7.4"
   }
 }
